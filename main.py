@@ -20,7 +20,7 @@ def handle_touch_input(game, x, y, screen):
 
 pygame.init()
 title_font = pygame.font.Font(None, 47)
-score_surface = title_font.render("Score", True, Colors.white)
+score_surface = title_font.render("Score:", True, Colors.white)
 next_surface = title_font.render("Next", True, Colors.white)
 game_over_surface = title_font.render("Game Over!", True, Colors.white)
 
@@ -77,11 +77,11 @@ while True:
         screen.blit(score_surface, (220,10))
         screen.blit(next_surface, (375,180,50,50))
         screen.blit(score_value_surface,(220,40))
+    
+         game.draw(screen)
 
         if game.game_over == True:
           screen.blit(game_over_surface, game_over_rect)
-        
-        game.draw(screen)
 
 
         pygame.display.update()
