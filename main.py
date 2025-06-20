@@ -6,7 +6,6 @@ from colors import Colors
 def handle_touch_input(game, x, y, screen):
     print("Touch at:", x, y)
     if game.game_over:
-       game.game_over = False
        game.reset()
     else:
         if y < screen.get_height() * 0.3:
@@ -20,16 +19,20 @@ def handle_touch_input(game, x, y, screen):
             game.move_right()
 
 pygame.init()
-title_font = pygame.font.Font(None, 40)
+title_font = pygame.font.Font(None, 47)
 score_surface = title_font.render("Score", True, Colors.white)
 next_surface = title_font.render("Next", True, Colors.white)
-game_over_surface = title_font.render("Game Over", True, Colors.white)
+game_over_surface = title_font.render("Game Over!", True, Colors.white)
 
 score_rect = pygame.Rect(320,55,170,60)
 next_rect = pygame.Rect(320,215,170,180)
 
 screen = pygame.display.set_mode((320,640))
 pygame.display.set_caption("Tetris Game")
+game_over_rect = game_over_surface.get_rect()
+game_over_rect.centerx = screen.get_width() // 2
+game_over_rect.top = 250
+
 
 clock = pygame.time.Clock()
 
@@ -71,12 +74,12 @@ while True:
         #Drawing
         score_value_surface = title_font.render(str(game.score), True, Colors.white)
         screen.fill(Colors.pink)
-        screen.blit(score_surface, (10,5))
+        screen.blit(score_surface, (220,10))
         screen.blit(next_surface, (375,180,50,50))
-        screen.blit(score_value_surface,(10,40))
+        screen.blit(score_value_surface,(220,40))
 
         if game.game_over == True:
-          screen.blit(game_over_surface, (10,400))
+          screen.blit(game_over_surface, game_over_rect)
         
         game.draw(screen)
 
