@@ -6,7 +6,7 @@ from colors import Colors
 def handle_touch_input(game, x, y, screen):
     print("Touch at:", x, y)
     if game.game_over:
-       game.reset()
+       return
     else:
         if y < screen.get_height() * 0.3:
             game.rotate()
@@ -49,7 +49,7 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if game.game_over == True:
-                    game.game_over == False
+                    game.game_over = False
                     game.reset()
                 if event.key == pygame.K_LEFT and game.game_over == False:
                     game.move_left()
